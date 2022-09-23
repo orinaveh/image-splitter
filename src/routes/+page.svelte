@@ -30,7 +30,7 @@
 	<ImageDisplay {dividers} />
 	{#if !wasImageLoaded}
 		<Dropzone
-			containerClasses="!p-32 !w-1/2 !bg-primary-dark !text-accent !rounded"
+			containerClasses="!p-32 !w-1/2 !bg-primary-dark !text-accent !rounded !cursor-pointer"
 			accept={['image/*']}
 			multiple={false}
 			on:drop={file.handleFileSelection}>Drop Image Here</Dropzone
