@@ -4,4 +4,15 @@
 
 body {
     margin: 8px;
+    box-sizing: border-box;
 }
+
+@layer base {
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      -moz-apperance: none;
+      appearance: none;
+      margin: 0;
+    }
+  }

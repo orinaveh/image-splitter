@@ -9,7 +9,8 @@ function createFileStore() {
 		handleFileSelection: (e: any) => {
 			const { acceptedFiles } = e.detail;
 			set(acceptedFiles[0]);
-		}
+		},
+		reset: () => set(null)
 	};
 }
 
