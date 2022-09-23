@@ -4,11 +4,11 @@
 	import { file } from '$lib/stores/file';
 
 	let fileName = '';
-	let dividers = 10;
+	export let dividers = 10;
 
 	let divCavnas: HTMLDivElement;
 	let imageWidth: number;
-	function onImageLoad(e: any) { imageWidth = e.target.clientWidth; }
+	function onImageLoad(e: any) { imageWidth = e.target.width; }
 
 	$: boxSize = imageWidth / dividers;
 
@@ -25,12 +25,12 @@
 </script>
 
 {#if $file}
-	<div bind:this={divCavnas} class="relative w-fit h-full p-8">
-		<img on:load={onImageLoad} alt="upload" src={URL.createObjectURL($file)} />
-		<div class="relative flex w-full justify-center pb-8">
+	<div bind:this={divCavnas} class="relative w-max max-w-full h-full p-8">
+		<img class="w-full h-full" on:load={onImageLoad} alt="upload" src={URL.createObjectURL($file)} />
+		<div class="relative flex w-full justify-center">
 			{#each { length: dividers } as _, i}
 				<div
-					style={`height: ${boxSize}px; width: ${boxSize}px`}
+					style={`height: ${Math.min(boxSize, 100)}px; width: ${boxSize}px`}
 					class="flex justify-center items-center border-y-4 border-x-2 border-black first:border-l-4 last:border-r-4"
 				>
 					<span class="font-bold text-3xl text-center">{i + 1}</span>
