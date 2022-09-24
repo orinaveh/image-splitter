@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
-	export interface ListItem {
+	export interface ListItem<V = string> {
 		label: string;
-		value: string;
+		value: V;
 		disabled?: boolean;
 	}
 </script>
@@ -21,7 +21,10 @@
 	export let list: ListItem[];
 
 	export let initialSelectedItem: string | undefined = undefined;
-	export let selectedItem = list.find((item) => item.value === initialSelectedItem) ?? list[0];
+	let selectedItem = list.find((item) => item.value === initialSelectedItem) ?? list[0];
+
+	export let selectedValue;
+    $: selectedValue = selectedItem.value;
 
 	let inputProps = {
 		class: [$$restProps.class]
