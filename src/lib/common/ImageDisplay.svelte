@@ -13,9 +13,7 @@
 	export let currentSize: ImageSize;
 	export let orientation: Orientation;
 
-	const maxNumberFontSize = 50;
-
-	$: dividers = Math.min(dividers, maxDividersValue);
+	$: dividers = Math.max(Math.min(dividers, maxDividersValue), 1);
 
 	let divCavnas: HTMLDivElement;
 	let imageWidth: number;
@@ -25,11 +23,14 @@
 		currentSize === 'initialSize' ? clientWidth : dimensions[currentSize]?.[orientation].width;
 	$: imageHeight =
 		currentSize === 'initialSize' ? clientHeight : dimensions[currentSize]?.[orientation].height;
-	$: imageUnit = currentSize === 'initialSize' ? 'px' : dimensions[currentSize]?.unit;
+	$: imageUnit = dimensions[currentSize]?.unit;
+	$: maxBoxSize = dimensions[currentSize]?.maxBoxSize;
 
 	$: imageDimensionsStyle = `width: ${imageWidth}${imageUnit}; height: ${imageHeight}${imageUnit}`;
 
 	$: boxSize = imageWidth / dividers;
+	$: boxSizeWidth = `${boxSize}${imageUnit}`;
+	$: boxSizeHeight = `${Math.min(boxSize, maxBoxSize)}${imageUnit}`;
 
 	file.subscribe((file: any) => {
 		if (file) {
@@ -50,29 +51,34 @@
 			bind:this={divCavnas}
 			bind:clientWidth
 			bind:clientHeight
-			class="relative h-full border-2 overflow-x-scroll border-black"
+			class="relative h-full"
 			style={`${currentSize !== 'initialSize' && imageDimensionsStyle}`}
 		>
-			<img class="object-fill w-full" style={`height: calc(100% - ${boxSize}${imageUnit})`} alt="upload" src={URL.createObjectURL($file)} />
+			<img
+				class="object-fill w-full"
+				style="height: calc(100% - {boxSizeHeight})"
+				alt="upload"
+				src={URL.createObjectURL($file)}
+			/>
 			{#each { length: dividers - 1 } as _, i}
 				<div
 					style={`height: 100%; left: ${boxSize * (i + 1)}${imageUnit}`}
-					class="absolute top-0 h-full flex justify-center items-center w-0.5 bg-black"
+					class="absolute z-10 top-0 h-full w-0.5 bg-black"
 				/>
 			{/each}
-			<div class="flex w-full justify-center">
-				{#each { length: dividers } as _, i}
-					<div
-						style={`height: ${Math.min(boxSize, 100)}${imageUnit}; width: ${boxSize}${imageUnit}`}
-						class="flex justify-center items-center border-y-2 bg-white border-black border-b-0 first:border-l-0 last:border-r-0"
-					>
-						<span
-							style={`font-size: ${Math.min(boxSize / 3, maxNumberFontSize)}${imageUnit}`}
-							class="font-bold text-center text-black">{i + 1}</span
+			{#each { length: dividers } as _, i}
+				<div style="height: {boxSizeHeight}; width: {boxSizeWidth}; left: {boxSize * i}{imageUnit}" class="absolute border-t-2 bg-white border-black w-full">
+					<svg width="100%" height="100%" viewBox="0 0 35 25">
+						<text
+							x="50%"
+							y="50%"
+							text-anchor="middle"
+							dominant-baseline="central"
+							class="fill-black font-bold align-middle">{i + 1}</text
 						>
-					</div>
-				{/each}
-			</div>
+					</svg>
+				</div>
+			{/each}
 		</div>
 	{/if}
 </main>

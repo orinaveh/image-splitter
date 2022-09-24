@@ -9,11 +9,11 @@
 	import ImageDisplay from '$lib/common/ImageDisplay.svelte';
 	import TextInput from '$lib/common/TextInput.svelte';
 	import constants from '$lib/constants';
-	import Button from '$lib/common/Button.svelte';
 	import Select, { type ListItem } from '$lib/common/Select.svelte';
 
 	import MdStayCurrentPortrait from 'svelte-icons/md/MdStayCurrentPortrait.svelte';
 	import MdStayCurrentLandscape from 'svelte-icons/md/MdStayCurrentLandscape.svelte';
+
 	import IconButton from '$lib/common/IconButton.svelte';
 
 	const list: ListItem<ImageSize>[] = [
@@ -43,7 +43,7 @@
 		}`}
 	>
 		{#if !!wasImageLoaded}
-			<Button type="danger" on:click={file.reset}>X</Button>
+			<IconButton label="Remove" type="danger" on:click={file.reset}>X</IconButton>
 		{/if}
 		<TextInput
 			bind:value={dividers}

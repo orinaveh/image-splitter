@@ -4,13 +4,18 @@ export default {
 		a4: {
 			portrait: {
 				width: 210,
-				height: 297,
+				height: 297
 			},
 			landscape: {
 				width: 297,
-				height: 210,
+				height: 210
 			},
-			unit: 'mm'
+			unit: 'mm',
+			maxBoxSize: 20
+		},
+		initialSize: {
+			unit: 'px',
+			maxBoxSize: 100
 		}
 	}
 };
