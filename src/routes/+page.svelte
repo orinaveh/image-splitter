@@ -15,6 +15,7 @@
 	import MdStayCurrentLandscape from 'svelte-icons/md/MdStayCurrentLandscape.svelte';
 
 	import IconButton from '$lib/common/IconButton.svelte';
+	import { Transition } from '@rgossiaux/svelte-headlessui';
 
 	const list: ListItem<ImageSize>[] = [
 		{ label: 'A4', value: 'a4' },
@@ -62,11 +63,9 @@
 		/>
 		{#if currentSize !== 'initialSize'}
 			<IconButton label="Orientation" on:click={changeOrientation}>
-				{#if orientation === 'portrait'}
+				<div class="rotate-{orientation}">
 					<MdStayCurrentPortrait />
-				{:else}
-					<MdStayCurrentLandscape />
-				{/if}
+				</div>
 			</IconButton>
 		{/if}
 	</div>
@@ -80,3 +79,48 @@
 		>
 	{/if}
 </div>
+
+<style>
+	.rotate-portrait {
+		transform: rotate(0deg);
+		animation-name: rotate;
+		animation-duration: 500ms;
+		animation-timing-function: ease-out;
+	}
+	.rotate-landscape {
+		transform: rotate(90deg);
+		animation-name: rotate-out;
+		animation-duration: 500ms;
+		animation-timing-function: ease-out;
+	}
+
+	@keyframes rotate {
+		from {
+			transform: rotate(90deg);
+		}
+		70% {
+			transform: rotate(-30deg);
+		}
+		90% {
+			transform: rotate(10deg);
+		}
+		to {
+			transform: rotate(0deg);
+		}
+	}
+
+	@keyframes rotate-out {
+		from {
+			transform: rotate(0deg);
+		}
+		70% {
+			transform: rotate(120deg);
+		}
+		90% {
+			transform: rotate(80deg);
+		}
+		to {
+			transform: rotate(90deg);
+		}
+	}
+</style>
