@@ -12,10 +12,7 @@
 	import Select, { type ListItem } from '$lib/common/Select.svelte';
 
 	import MdStayCurrentPortrait from 'svelte-icons/md/MdStayCurrentPortrait.svelte';
-	import MdStayCurrentLandscape from 'svelte-icons/md/MdStayCurrentLandscape.svelte';
-
 	import IconButton from '$lib/common/IconButton.svelte';
-	import { Transition } from '@rgossiaux/svelte-headlessui';
 
 	const list: ListItem<ImageSize>[] = [
 		{ label: 'A4', value: 'a4' },
