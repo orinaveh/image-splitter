@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-	export type ImageSize = 'a4' | 'initialSize';
+	export type ImageSize = 'a4' | 'a3' | 'initialSize';
 	export type Orientation = 'portrait' | 'landscape';
 </script>
 
@@ -16,6 +16,7 @@
 
 	const list: ListItem<ImageSize>[] = [
 		{ label: 'A4', value: 'a4' },
+		{ label: 'A3', value: 'a3' },
 		{ label: 'Original Size', value: 'initialSize' }
 	];
 

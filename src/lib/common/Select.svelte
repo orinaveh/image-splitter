@@ -65,8 +65,9 @@
 		leave="transition duration-75 ease-out"
 		leaveFrom="transform scale-100 opacity-100"
 		leaveTo="transform scale-95 opacity-0"
+		class="absolute w-full z-50"
 	>
-		<ListboxOptions class="absolute w-full focus:outline-none rounded mt-1">
+		<ListboxOptions class="focus:outline-none rounded mt-1">
 			{#each list as item}
 				<ListboxOption
 					class={({ active, disabled }) =>
