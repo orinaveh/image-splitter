@@ -5,7 +5,7 @@
 		class: [$$restProps.class]
 	};
 
-	$: classes = `bg-secondary text-md rounded block p-2 dark:bg-secondary-dark dark:placeholder-gray-400 dark:text-black ${inputProps.class}`;
+	$: classes = `bg-primary text-md rounded block p-2 dark:placeholder-gray-400 ${inputProps.class}`;
 </script>
 
 <div>
