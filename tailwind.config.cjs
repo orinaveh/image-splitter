@@ -6,4 +6,9 @@ module.exports = {
   daisyui: {
     themes: ["business"],
   },
+  theme: {
+    fontFamily: {
+      tama: ['KtivaTamaSquareMF', '"Open Sans"', 'Arial']
+    }
+  }
 }

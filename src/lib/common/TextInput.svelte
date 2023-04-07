@@ -1,6 +1,7 @@
 <script lang="ts">
 	export let value: number | string;
 	export let label = '';
+	export let rows = 1;
 	let inputProps = {
 		class: [$$restProps.class]
 	};
@@ -14,5 +15,9 @@
 			<label for="input" aria-label={label}>{label}</label>
 		</div>
 	{/if}
-	<input id="input" {...$$restProps} bind:value class={classes} />
+	{#if rows > 1}
+		<textarea {rows} id="textarea" {...$$restProps} bind:value class={classes} />
+	{:else}
+		<input id="input" {...$$restProps} bind:value class={classes} />
+	{/if}
 </div>

@@ -18,14 +18,14 @@
 			icon: MdHome
 		},
         {
-            label: 'Vertical Puzzle Creator',
-            link: '/puzzle',
+            label: 'Lotto',
+            link: '/lotto',
 			icon: TiPuzzle
         }
 	];
 </script>
 
-<div class="btm-nav">
+<div class="btm-nav mt-2">
 	{#each pages as page}
 		<a href={page.link} class="{base === page.link ? 'active' : ''}  text-accent  p-2">
 			<svelte:component this={page.icon} />
