@@ -13,12 +13,18 @@
 
 	import MdStayCurrentPortrait from 'svelte-icons/md/MdStayCurrentPortrait.svelte';
 	import IconButton from '$lib/common/IconButton.svelte';
+	import { onMount } from 'svelte/internal';
+	import { headers } from '$lib/stores/headers';
 
 	const list: ListItem<ImageSize>[] = [
 		{ label: 'A4', value: 'a4' },
 		{ label: 'A3', value: 'a3' },
 		{ label: 'Original Size', value: 'initialSize' }
 	];
+
+	onMount(() => {
+		headers.set('Vertical Puzzle Creator', 'Simple Tool for adding vertical lines to images');
+	})
 
 	let orientation: Orientation = 'portrait';
 
@@ -34,8 +40,6 @@
 </script>
 
 <div class="flex gap-4 flex-col text-center p-4 w-full justify-center items-center">
-	<h1 class="text-center text-5xl font-bold underline">Image Splitter</h1>
-	<p class="text-2xl text-accent">Simple Tool for adding vertical lines to images</p>
 	<div
 		class={`grid grid-flow-col grid-cols-2 gap-4 items-end ${
 			!!wasImageLoaded && 'grid-cols-[auto_1fr_1fr]'
@@ -70,7 +74,7 @@
 	<ImageDisplay {orientation} {currentSize} {dividers} />
 	{#if !wasImageLoaded}
 		<Dropzone
-			containerClasses="!p-32 !w-1/2 !bg-primary-dark !text-accent !rounded !cursor-pointer"
+			containerClasses="!p-32 !w-1/2 !bg-primary !text-accent !rounded !cursor-pointer"
 			accept={['image/*']}
 			multiple={false}
 			on:drop={file.handleFileSelection}>Drop Image Here</Dropzone

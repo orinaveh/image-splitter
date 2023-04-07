@@ -2,16 +2,13 @@
 module.exports = {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   darkMode: 'class',
-  theme: {
-    extend: {
-      colors: {
-        primary: '#dfedf0',
-        secondary: '#01263f',
-        'primary-dark': '#000c24',
-        'secondary-dark': '#cce2eb',
-        accent: '#dd6e14 '
-      },
-    },
+  plugins: [require("daisyui")],
+  daisyui: {
+    themes: ["business"],
   },
-  plugins: [],
+  theme: {
+    fontFamily: {
+      tama: ['KtivaTamaSquareMF', '"Open Sans"', 'Arial']
+    }
+  }
 }

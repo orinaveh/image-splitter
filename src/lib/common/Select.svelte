@@ -47,7 +47,7 @@
 	{/if}
 	<div class="relative">
 		<ListboxButton
-			class="py-2 pl-3 pr-10 w-full text-left border-accent focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white dark:text-black  rounded bg-secondary dark:bg-secondary-dark"
+			class="py-2 pl-3 pr-10 w-full text-left border-accent focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white dark:text-black  rounded bg-primary"
 			>{selectedItem?.label}</ListboxButton
 		>
 
