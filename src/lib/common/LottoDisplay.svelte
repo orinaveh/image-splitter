@@ -33,6 +33,7 @@
 
 	$: imageDimensionsStyle = `width: ${imageWidth}${imageUnit}; height: ${imageHeight}${imageUnit}`;
 
+	$: console.log((horizontalCircles + 1) >= verticalCircles, (+horizontalCircles + 1), verticalCircles);
 	file.subscribe((file: any) => {
 		if (file) {
 			fileName = file.name;
@@ -52,29 +53,30 @@
 		bind:this={divCavnas}
 		bind:clientWidth
 		bind:clientHeight
-		class="flex flex-col items-center h-full p-4"
+		class="flex flex-col items-center p-4"
 		style={`${currentSize !== 'initialSize' && imageDimensionsStyle}`}
 	>
 		<h1 style="color: {hexText}" class="text-5xl my-1 font-tama" dir="rtl">{title}</h1>
 		<h2 style="color: {hexText}" class="text-2xl mt-2 mb-12 font-tama" dir="rtl">{subTitle}</h2>
 		<div
-			class="grid {(verticalCircles >= 5) ? 'gap-10' : 'gap-14'} {(type === 'lotto') ? 'gap-20 gap-y-48' : 'gap-14'} justify-items-center"
-            style="grid-template-rows: repeat({horizontalCircles}, 4cm); grid-template-columns: repeat({verticalCircles}, 5cm)"
+			class="overflow-hidden min-w-0 min-h-0 w-full max-h-full grid {(verticalCircles >= 4 || horizontalCircles >= 4) ? 'gap-10' : 'gap-14'} justify-items-center"
+            style="grid-template-rows: repeat({horizontalCircles}, minmax(0,1fr)); grid-template-columns: repeat({verticalCircles}, minmax(0,1fr))"
 		>
 			{#each { length: horizontalCircles } as _, i}
 				{#each { length: verticalCircles } as _, j}
 					<div
 						style="border: 4px solid {hex}"
-						class="{(type === 'lotto') ? 'h-[6cm] w-[6cm]' : 'h-[4cm] w-[4cm]'} {mode === 'Circles' && 'rounded-[50%]'} flex justify-center items-center"
+						class="{(type === 'lotto') ? `max-w-[6cm] max-h-[6cm] ${((+horizontalCircles + 2) >= +verticalCircles) ? 'h-full' : 'w-full'} aspect-square` : 'h-[4cm] w-[4cm]'} {mode === 'Circles' && 'rounded-[50%]'} flex justify-center items-center"
 					>
-						<svg width="100%" height="100%" viewBox="0 0">
+						<svg width="100%" height="100%" viewBox="0 0 10 15">
 							<text
 								x="50%"
-								y="70%"
-								text-anchor="middle"
+								y="50%"
 								style="fill: {hexText}"
-								class="font-bold {(type === 'lotto') ? 'text-[11rem]' : 'text-8xl'}  font-tama"
-								dominant-baseline="cenFont-bold align-middle">{data[(verticalCircles - 1 - j) + (verticalCircles * i)] ?? ''}</text
+								class="font-bold font-tama align-middle"
+								text-anchor="middle"
+								dominant-baseline="central"
+								>{data[(verticalCircles - 1 - j) + (verticalCircles * i)] ?? ''}</text
 							>
 						</svg>
 					</div>
