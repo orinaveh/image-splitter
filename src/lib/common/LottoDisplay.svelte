@@ -40,7 +40,7 @@
 	});
 
 	const convertToPng = () =>
-		toBlob(divCavnas).then(function (blob) {
+		toBlob(divCavnas, { pixelRatio: 2 }).then(function (blob) {
 			saveAs(blob!, `circles-${new Date().toDateString()}`);
 		});
 </script>
@@ -55,8 +55,8 @@
 		class="flex flex-col items-center h-full p-4"
 		style={`${currentSize !== 'initialSize' && imageDimensionsStyle}`}
 	>
-		<h1 style="color: {hexText}" class="text-5xl my-1 font-tama">{title}</h1>
-		<h1 style="color: {hexText}" class="text-3xl mt-2 mb-12 font-tama">{subTitle}</h1>
+		<h1 style="color: {hexText}" class="text-5xl my-1 font-tama" dir="rtl">{title}</h1>
+		<h2 style="color: {hexText}" class="text-2xl mt-2 mb-12 font-tama" dir="rtl">{subTitle}</h2>
 		<div
 			class="grid {(verticalCircles >= 5) ? 'gap-10' : 'gap-14'} {(type === 'lotto') ? 'gap-20 gap-y-48' : 'gap-14'} justify-items-center"
             style="grid-template-rows: repeat({horizontalCircles}, 4cm); grid-template-columns: repeat({verticalCircles}, 5cm)"

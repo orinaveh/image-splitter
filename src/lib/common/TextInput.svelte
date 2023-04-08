@@ -16,8 +16,8 @@
 		</div>
 	{/if}
 	{#if rows > 1}
-		<textarea {rows} id="textarea" {...$$restProps} bind:value class={classes} />
+		<textarea {rows} id="textarea" dir="rtl" {...$$restProps} bind:value class={classes} />
 	{:else}
-		<input id="input" {...$$restProps} bind:value class={classes} />
+		<input id="input" dir="rtl" {...$$restProps} bind:value class={classes} />
 	{/if}
 </div>
