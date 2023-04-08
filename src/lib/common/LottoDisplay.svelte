@@ -74,7 +74,7 @@
 								text-anchor="middle"
 								style="fill: {hexText}"
 								class="font-bold {(type === 'lotto') ? 'text-[11rem]' : 'text-8xl'}  font-tama"
-								dominant-baseline="cenFont-bold align-middle">{data[j + (verticalCircles * i)] ?? ''}</text
+								dominant-baseline="cenFont-bold align-middle">{data[(verticalCircles - 1 - j) + (verticalCircles * i)] ?? ''}</text
 							>
 						</svg>
 					</div>
