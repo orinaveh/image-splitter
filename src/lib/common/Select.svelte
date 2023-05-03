@@ -41,7 +41,7 @@
 	class={classes}
 >
 	{#if label}
-		<div class="text-left w-full my-2">
+		<div class="text-left w-full mb-2">
 			<ListboxLabel>{label}</ListboxLabel>
 		</div>
 	{/if}

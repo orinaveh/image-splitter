@@ -11,7 +11,7 @@
 
 <div>
 	{#if label}
-		<div class="text-left w-full my-2">
+		<div class="text-left w-full mb-2">
 			<label for="input" aria-label={label}>{label}</label>
 		</div>
 	{/if}

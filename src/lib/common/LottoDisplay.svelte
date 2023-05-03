@@ -33,7 +33,6 @@
 
 	$: imageDimensionsStyle = `width: ${imageWidth}${imageUnit}; height: ${imageHeight}${imageUnit}`;
 
-	$: console.log((horizontalCircles + 1) >= verticalCircles, (+horizontalCircles + 1), verticalCircles);
 	file.subscribe((file: any) => {
 		if (file) {
 			fileName = file.name;
